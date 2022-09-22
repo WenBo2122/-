@@ -1,0 +1,147 @@
+html {
+  font-size: 13.333333vw;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+.search {
+  display: flex;
+  left: 0;
+  width: 100%;
+  height: 0.92rem;
+  padding: 0.17rem 0;
+}
+
+.search-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #f8f8fb;
+  border-radius: 0.3rem;
+  text-align: center;
+}
+
+.search-con .sousuo {
+  display: inline-block;
+  width: 0.23rem;
+  margin-right: 0.2rem;
+}
+.search-con img {
+  width: 100%;
+}
+
+.search-con > span {
+  font-size: 0.22rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.search-list {
+  position: relative;
+  width: 100%;
+  height: 0.5rem;
+  margin-top: 0.1rem;
+  padding: 0 0.68rem 0 0.24rem;
+  font-size: 0.25rem;
+  border-bottom: 0.01rem solid #ccc;
+  line-height: 0.5rem;
+}
+
+.tit {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.zhankai {
+  position: absolute;
+  top: 0.02rem;
+  right: 0.2rem;
+}
+
+.zhankai img {
+  width: 0.4rem;
+  height: 0.4rem;
+  transition: all 0.2s;
+}
+
+.hide {
+  position: absolute;
+  top: 1;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: none;
+  padding: 0.2rem 0.4rem;
+}
+
+.titlec {
+  float: left;
+  width: 1.26rem;
+  height: 0.51rem;
+  margin: 0 0.2rem 0.2rem 0;
+  background-color: #f3f4f9;
+  border-radius: 0.5rem;
+  font-size: 0.2rem;
+  text-align: center;
+}
+
+.remen {
+  width: 100%;
+  height: 0.99rem;
+  margin-bottom: 0.2rem;
+  padding: 0.23rem 0.2048rem;
+  border-radius: 0.5rem;
+}
+.remen1 {
+  float: left;
+  height: 0.51rem;
+  padding: 0 0.32rem;
+  margin-right: 0.2rem;
+  font-size: 0.2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.51rem;
+  background-color: #f3f4f9;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.remen2 {
+  float: left;
+  height: 0.51rem;
+  padding: 0 0.32rem;
+  margin-right: 0.2rem;
+  font-size: 0.2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 0.51rem;
+  background-color: #f3f4f9;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.lan {
+  background-color: #0773fc;
+  color: #fff;
+}
+
+.img {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0.23rem 0.5rem;
+}
+
+.img div {
+  width: 3rem;
+  margin-bottom: 0.3rem;
+}
+
+.img div img {
+  width: 100%;
+}

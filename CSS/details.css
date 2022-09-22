@@ -1,0 +1,115 @@
+html {
+  font-size: 13.333333vw;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+.box {
+  width: 100%;
+  padding: 0 0.21rem;
+}
+
+.box-tit {
+  padding: 0.26rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  background-color: #e3e6e9;
+}
+
+.box-tit img {
+  width: 4.4rem;
+}
+
+h2 {
+  margin: 0.3rem 0;
+  font-size: 0.3072rem;
+}
+
+.a1 {
+  font-size: 0.24rem;
+  margin-bottom: 0.2rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.a2 {
+  font-size: 0.24rem;
+  margin-bottom: 0.2rem;
+  line-height: 0.4rem;
+}
+
+.itema a {
+  display: inline-block;
+  height: 0.53rem;
+  margin: 0 0.13rem 0.14rem 0;
+  padding: 0 0.27rem;
+  font-size: 0.2rem;
+  background-color: #f3f4f9;
+  border-radius: 0.3rem;
+  line-height: 0.53rem;
+}
+h1 {
+  margin: 0.2rem 0 0.34rem;
+  font-size: 0.31rem;
+}
+
+.tuijian {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tuijianimg {
+  width: 2.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.tuijianimg img {
+  width: 100%;
+  border-radius: 0.06rem;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 1.22rem;
+  padding: 0 0.21rem;
+  background-color: #fff;
+
+  z-index: 9;
+}
+
+.bianji {
+  width: 5rem;
+  height: 0.82rem;
+  border-radius: 0.1rem;
+  background-color: #0773fc;
+  font-size: 0.256rem;
+  text-align: center;
+  line-height: 0.82rem;
+  color: #fff;
+}
+
+.bottom .ii {
+  width: 0.82rem;
+  height: 0.82rem;
+  padding-top: 0.2rem;
+  text-align: center;
+  background-color: #f9fafd;
+  border-radius: 0.1rem;
+}
+
+.bottom .ii img {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+.kongbai {
+  width: 100%;
+  height: 1.3rem;
+}

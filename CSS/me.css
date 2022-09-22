@@ -1,0 +1,169 @@
+html {
+  font-size: 13.333333vw;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+/* 底部 table 栏 */
+.mytable {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.mytable .tit {
+  width: 33%;
+}
+
+.mytable a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  color: rgb(153, 153, 153);
+}
+
+.mytable img {
+  width: 27px;
+  height: 27px;
+}
+
+.kong {
+  width: 100%;
+  height: 54px;
+}
+
+html {
+  font-size: 13.3333333vw;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #111;
+}
+
+body {
+  width: 100%;
+  font-size: 0.16rem;
+  background-color: #f3f4f9;
+}
+
+.top-col {
+  width: 100%;
+  height: 3.14rem;
+  background: url(../image/uc_bg.png) no-repeat;
+  background-size: 100%;
+  color: white;
+  position: relative;
+}
+
+.top-col .portrait {
+  width: 0.96rem;
+  height: 0.96rem;
+  position: absolute;
+  top: 1rem;
+  left: 0.3rem;
+}
+
+.top-col .portrait img {
+  width: 100%;
+  height: 100%;
+}
+
+.top-col .right {
+  width: 5.58rem;
+  height: 0.74rem;
+  position: absolute;
+  top: 1.15rem;
+  left: 1.5rem;
+}
+
+.top-col .right p:nth-child(1) {
+  font-size: 0.27rem;
+  font-weight: bold;
+}
+.top-col .right p:nth-child(2) {
+  font-size: 0.2rem;
+  margin-top: 0.2rem;
+}
+.top-col .set {
+  width: 0.46rem;
+  height: 0.46rem;
+  position: absolute;
+  top: 1.3rem;
+  right: 0.25rem;
+}
+.top-col .set img {
+  width: 100%;
+  height: 100%;
+}
+.vip-info {
+  width: 7.1rem;
+  height: 1.02rem;
+  background: url(../image/vipbg.png) no-repeat 0 0/100% 100%;
+  position: absolute;
+  bottom: -0.15rem;
+  left: 0.2rem;
+}
+.vip-info .vip-intro {
+  position: absolute;
+  top: 0.2rem;
+  left: 1rem;
+}
+.vip-info .vip-intro p:nth-child(1) {
+  font-size: 0.29rem;
+  color: #5e3917;
+  font-weight: bold;
+  margin-bottom: 0.15rem;
+}
+.vip-info .vip-intro p:nth-child(2) {
+  font-size: 0.2rem;
+  color: #5e3917;
+}
+.vip-info .buy-vip-btn {
+  width: 1.22rem;
+  height: 0.512rem;
+  font-size: 0.2rem;
+  background: #cd9555;
+  border-radius: 0.05rem;
+  text-align: center;
+  line-height: 00.512rem;
+  position: absolute;
+  right: 0.3rem;
+  top: 0.2rem;
+}
+.order-con {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+.order-con .taro-img {
+  width: 100%;
+  height: 0.96rem;
+  background-color: white;
+  font-size: 0.27rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.order-con .taro-img div:nth-child(1) {
+  width: 0.39rem;
+  height: 0.39rem;
+  margin: 0 0.3rem;
+}
+.order-con .taro-img div:nth-child(1) img {
+  width: 100%;
+  height: 100%;
+}

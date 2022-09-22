@@ -1,0 +1,51 @@
+html {
+  font-size: 13.333333vw;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+.zhuanti {
+  width: 100%;
+  padding: 0.2rem;
+}
+
+.box {
+  width: 100%;
+}
+
+.box h2 {
+  margin-bottom: 0.3rem;
+  font-size: 0.28rem;
+  text-align: center;
+}
+
+.box-img {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.img {
+  width: 3.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.img img {
+  width: 100%;
+}
+
+.gengduo {
+  width: 2.58rem;
+  height: 0.71rem;
+  margin: 0.3rem auto;
+  margin-bottom: 0.5rem;
+  background-color: #f9fafd;
+  font-size: 0.22rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  line-height: 0.71rem;
+  border-radius: 0.5rem;
+}

@@ -1,0 +1,73 @@
+html {
+  font-size: 13.333333vw;
+}
+
+body {
+  font-size: 0.16rem;
+}
+
+/* 底部 table 栏 */
+.mytable {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.mytable .tit {
+  width: 33%;
+}
+
+.mytable a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  color: rgb(153, 153, 153);
+}
+
+.mytable img {
+  width: 27px;
+  height: 27px;
+}
+
+.kong {
+  width: 100%;
+  height: 54px;
+}
+
+
+.box {
+  width: 3.24rem;
+  height: 3.23rem;
+  margin: 0.4rem auto;
+  text-align: center;
+}
+
+.box img {
+  width: 1.71rem;
+  height: 1.71rem;
+  margin-bottom: 0.1rem;
+}
+
+.box p {
+  font-size: 0.24rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.3rem;
+}
+
+.box a {
+  display: block;
+  width: 100%;
+  height: 0.73rem;
+  background-color: #0773fc;
+  border-radius: 0.4rem;
+  font-size: 0.28rem;
+  color: #fff;
+  line-height: 0.73rem;
+}
