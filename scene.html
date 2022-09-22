@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/scene.css" />
+    <link rel="stylesheet" href="./ui/Swiper/swiper-bundle.min.css" />
+    <title>场景</title>
+  </head>
+  <body>
+    <!-- 搜索 -->
+    <div class="search">
+      <div class="search-con">
+        <div class="sousuo">
+          <img src="./image/搜索.png" />
+        </div>
+        <span>在当前场景下搜索</span>
+      </div>
+    </div>
+
+    <div class="search-list">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- 渲染 -->
+        </div>
+      </div>
+      <div class="zhankai"><img src="./image/下箭头.png" /></div>
+      <div class="hide">
+        <!-- <div class="titlec">全部</div> -->
+      </div>
+    </div>
+
+    <div class="remen">
+      <div class="remen1 lan">最热</div>
+      <div class="remen1">最新</div>
+      <div class="remen1">使用最多</div>
+      <div class="remen1">最多收藏</div>
+      <div class="remen2">筛选</div>
+    </div>
+
+    <div class="img">
+      <div><img src="" alt="" /></div>
+    </div>
+
+    <script src="./ui/jquery-3.6.1.min.js"></script>
+    <script src="./ui/Swiper/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 5.2,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      let id = location.search.substring(1);
+      console.log(id);
+
+      (async () => {
+        let url;
+        url = `http://localhost:9527/api/home/getDesignType.do?_dataType=json&_dataClientType=3&client_type=40&second_kind_id=${id}`;
+        let res = await fetch(url);
+        let result = await res.json();
+        console.log(result);
+        // 渲染滑动 nav
+        let style =
+          result.body.secondKindInfo.repoTag.use == ""
+            ? result.body.secondKindInfo.repoTag.style
+            : result.body.secondKindInfo.repoTag.use;
+
+        let str = `<div class="swiper-slide">
+                    <span class="tit">全部</span>
+                  </div>`;
+        // 渲染下拉
+        let str1 = `<div class="titlec lan">全部</div>`;
+        style.forEach((item) => {
+          str += `<div class="swiper-slide">
+                    <span class="tit" id='${item.tagId}'>${item.name}</span>
+                  </div>`;
+          str1 += `<div class="titlec">${item.name}</div>`;
+        });
+        $(".swiper-wrapper").html(str);
+        $(".hide").html(str1);
+
+        document.querySelectorAll(".tit").forEach((item) => {
+          item.onclick = function () {
+            let tagid = this.id;
+            console.log(tagid);
+
+            (async () => {
+              let url = `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_0_${tagid}_0_0?v=1663330732302&client_type=40&_dataClientType=3`;
+              let res = await fetch(url);
+              let result = await res.json();
+              let img = result.body.templates;
+              let str = ``;
+              img.forEach((item) => {
+                str += `<div><img src="${item.designTemplateThumbUrls[0]}" title='${item.designTemplateId}'/></div>`;
+              });
+              $(".img").html(str);
+            })();
+          };
+        });
+      })();
+
+      // 最新
+      $(".remen1").click((e) => {
+        let inx = $(e.target).index();
+        console.log(inx);
+        $(e.target).addClass("lan").siblings(".remen1").removeClass("lan");
+        // 调用接口重新渲染
+        fn(inx);
+      });
+
+      fn();
+      function fn(index) {
+        (async () => {
+          let url;
+          url = `http://localhost:9527/api/designtemplate/getWxAppTemplateByKindId.do?_dataType=json&page_no=1&sid=${id}&is_new=1&price_type=0&sort_type=${index}&name=全部`;
+          let res = await fetch(url);
+          let result = await res.json();
+          // 二级场景
+          let a = result.body.cacheUrl;
+          let url1 = `http:${a}`;
+          let res1 = await fetch(url1);
+          let result1 = await res1.json();
+
+          let aa = result1.body.templates;
+          console.log(aa);
+
+          // 渲染图片
+          let img = ``;
+          aa.forEach((image) => {
+            img += `<div><img src="${image.designTemplateImageUrl || image.designTemplateThumbUrls[0]}" title='${
+              image.designTemplateId
+            }'/></div>`;
+          });
+          $(".img").html(img);
+
+          // 跳转详情页
+          let cli = document.querySelectorAll(".img");
+          cli.forEach((item) => {
+            item.onclick = function (e) {
+              // 判断
+              if (e.target.nodeName == "IMG") {
+                let id = $(e.target).attr("title");
+                location.assign(`./details.html?${id}`);
+              }
+            };
+          });
+        })();
+      }
+
+      // 点击展开
+      let a = false;
+      $(".zhankai").click((e) => {
+        $(".hide").toggle();
+        if (!a) {
+          $(".zhankai img").css("transform", "rotateZ(180deg)");
+        } else {
+          $(".zhankai img").css("transform", "rotateZ(0deg)");
+        }
+        a = !a;
+      });
+    </script>
+  </body>
+</html>

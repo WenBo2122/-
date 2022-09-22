@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/zhuanti.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="zhuanti"></div>
+
+    <script src="./ui/jquery-3.6.1.min.js"></script>
+    <script>
+      let id = location.search.substring(1);
+      console.log(id);
+
+      var zhuanti = (function () {
+        let result;
+        let url1;
+        url1 = `http://localhost:9527/solutionSubject/themeDetail.do?_dataType=json&_dataClientType=3&client_type=40&themeId=${id}&templatePageSize=6`;
+        $.ajax({
+          type: "get",
+          url: url1,
+          dataType: "json",
+          async: false,
+          success: (response) => {
+            result = response;
+          },
+        });
+        return result;
+      })();
+      let k = zhuanti.body.data.theme.themeExtends;
+      console.log(k);
+
+      let str = ``;
+      k.forEach((item) => {
+        str += `<div class="box">
+                <h2>${item.title}</h2>
+                <div class="box-img">`;
+        item.templates.forEach((img) => {
+          str += `<div class="img">
+                    <img src="${img.designTemplateImageUrl}" id='${img.designTemplateId}' />
+                  </div>`;
+        });
+        str += `</div>
+                  <div class='gengduo'>查看更多</div>
+                </div>`;
+      });
+      $(".zhuanti").html(str);
+
+      // 跳转详情页
+      $(".img img").click((e) => {
+        console.log($(e.target).attr("id"));
+        let id = $(e.target).attr("id");
+        location.assign(`./details.html?${id}`);
+      });
+    </script>
+  </body>
+</html>

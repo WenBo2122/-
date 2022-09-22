@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/details.css" />
+    <title>详情页</title>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box-tit"></div>
+      <h2></h2>
+      <p class="a1"></p>
+      <p class="a2"></p>
+      <div class="itema"></div>
+      <h1>为你推荐</h1>
+
+      <div class="tuijian"></div>
+      
+      <div class="kongbai"></div>
+    </div>
+
+
+    <div class="bottom">
+      <div class="ii"><img src="./image/收藏1.png" alt="" /></div>
+      <div class="bianji">立即编辑</div>
+    </div>
+
+    <script src="./ui/jquery-3.6.1.min.js"></script>
+    <script>
+      let id = location.search.slice(1);
+      (async () => {
+        let url;
+        url = "https://api.chuangkit.com/designtemplate/getDetailCacheFileUrl.do?_dataType=json&_dataClientType=3";
+        url = "http://localhost:9527/api/designtemplate/getDetailCacheFileUrl.do?_dataType=json&_dataClientType=3";
+        let res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+          },
+          body: `id=${id}`,
+        });
+        let result = await res.json();
+
+        let x = result.body.currentTemplate;
+        let x1 = result.body.recommendedTemplates;
+
+        let img = `<img src="http:${x.designTemplateImageUrl}" alt="" />`;
+        let title = `${x.templateTitle}`;
+        let a1 = `${x.kindTitle}`;
+        let a2 = `图片编号为${x.designTemplateId}，该手机海报尺寸是${x.width} * ${x.height}。点击“立即使用”，
+        《${x.templateTitle}》一键生成，在线编辑图片，简单托拉拽，秒出精美 手机海报。`;
+
+        $("h2").html(title);
+        $(".box-tit").html(img);
+        $(".a1").html(a1);
+        $(".a2").html(a2);
+
+        let keywords = `${x.keywords}`;
+        keywords = keywords.split(" ");
+        let words = ``;
+        keywords.forEach((list) => {
+          words += `<a href="">${list}</a>`;
+          $(".itema").html(words);
+        });
+
+        let imgurl = ``;
+        x1.forEach((item) => {
+          imgurl += `
+          <div class="tuijianimg">
+            <img src="http:${item.designTemplateImageUrl}" title = '${item.designTemplateId}' />
+          </div>`;
+        });
+        $(".tuijian").html(imgurl);
+
+        $(".tuijianimg").click((e) => {
+          let id = $(e.target).attr("title");
+          location.assign(`./details.html?${id}`);
+        });
+      })();
+    </script>
+  </body>
+</html>

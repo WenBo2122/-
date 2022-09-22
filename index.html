@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_3245172_nkvxkjxk04i.css" />
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/index.css" />
+    <link rel="stylesheet" href="../ui/Swiper/swiper-bundle.min.css" />
+    <script src="../ui/Swiper/swiper-bundle.min.js"></script>
+    <title>创客贴</title>
+  </head>
+  <body>
+    <div class="guding">
+      <div class="appbtn">
+        <i class="iconfont icon-guanbi"></i>
+        <img src="./image/cktlogo.jpg" alt="" />
+        <div class="btn"><a href="">APP内打开</a></div>
+      </div>
+      <!-- 搜索 -->
+      <div class="search">
+        <div class="search-con">
+          <div class="sousuo">
+            <img src="./image/搜索.png" />
+          </div>
+          <span>200000+ 免费模板任你搜索</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- icons -->
+    <div class="icons">
+      <!-- 渲染 -->
+    </div>
+
+    <div class="xian"></div>
+
+    <div class="container">
+      <div class="tit-con">
+        <h2>推荐专题</h2>
+      </div>
+      <div class="theme">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- 渲染 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container111">
+      <!-- 渲染 -->
+    </div>
+
+    <div class="container1111">
+      <!-- 渲染 -->
+    </div>
+
+    <div class="container11111">
+      <!-- 渲染 -->
+    </div>
+    <div class="container111111">
+      <!-- 渲染 -->
+    </div>
+
+    <!-- 底部 table 栏 -->
+    <div class="mytable">
+      <div class="tit">
+        <a href="javascript:;">
+          <img src="./image/首页1.png" alt="" />
+          <p class="color">首页</p>
+        </a>
+      </div>
+      <div class="tit">
+        <a href="./design.html">
+          <img src="./image/设计.png" alt="" />
+          <p>我的设计</p>
+        </a>
+      </div>
+      <div class="tit">
+        <a href="./me.html">
+          <img src="./image/个人中心.png" alt="" />
+          <p>个人中心</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="kong"></div>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="module">
+      import { test, shouji, zhuanti, pyq, yinhua, zhibo } from "./api/home.js";
+
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3.1,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // 点击隐藏
+      document.querySelector(".icon-guanbi").onclick = function () {
+        document.querySelector(".appbtn").style.display = "none";
+        document.querySelector(".icons").style.marginTop = "0.92rem";
+      };
+
+      // 搜索跳转
+      $(".search").click(function () {
+        $(location).attr("href", "./search.html");
+      });
+
+      // iconNav
+      let icon = test.body.data.scene;
+      // console.log(icon);
+      let str = ``;
+      for (let i = 0; i < 8; i++) {
+        str += `
+                      <div class="icons-item">
+                        <a href="./scene.html?${icon[i].designKindId}">
+                          <img src="http:${icon[i].thumbUrl}" alt="" />
+                        </a>
+                      <p>${icon[i].name}</p>
+                      </div>
+                    `;
+      }
+      $(".icons").html(str);
+
+      // 推荐专题;
+      let zhuanti1 = zhuanti.body.data.themes;
+      // console.log(zhuanti1);
+      let str1 = ``;
+      zhuanti1.forEach((item) => {
+        str1 += ` <div class="swiper-slide" '>
+                              <div class='ti' id='${item.id}'>
+                                  <h2>${item.title}</h2>
+                                  <p>${item.themeDescribe}</p>
+                                <div class="yuan"></div>
+                              </div>
+                        </div>`;
+      });
+      $(".swiper-wrapper").html(str1);
+
+      // 点击跳转推荐专题页面
+      $(".ti").click((e) => {
+        let id = $(e.target).attr("id");
+        console.log(id);
+        location.assign(`./zhuanti.html?${id}`);
+      });
+
+      // 手机海报 每日一签 手机壁纸
+      // console.log(shouji.body.data.sceneDetail);
+      let scene = shouji.body.data.sceneDetail;
+      let str2 = ``;
+      scene.forEach((item, i) => {
+        str2 += `
+                    <div class="container1">
+                  <div class="tit-con">
+                    <h2>${item.name}</h2>
+                    <a href="./scene.html?${item.kindId}">进入场景</a>
+                  </div>
+                  <div class="temp-con">
+                  `;
+        item.templates.forEach((img) => {
+          str2 += `
+                        <div class="temp-item">
+                          <img src="http:${img.designTemplateImageUrl}" title='${img.designTemplateId}' />
+                        </div>
+                        `;
+        });
+        str2 += `
+                        </div>
+                      <div class="gh">
+                        <div><a href="./scene.html?${item.kindId}">更多</a></div>
+                        <div class='hhhh' id='${item.kindId}'>换一批</div>
+                      </div>
+                      </div>
+                    `;
+      });
+      $(".container111").html(str2);
+
+      //点击下一页
+      let num3 = 1;
+      $(".hhhh").click((e) => {
+        num3 += 1;
+        let id = $(e.target).attr("id");
+        // 调用接口渲染
+        fn(e.target, id, num3);
+      });
+
+      //  朋友圈封面、横板、邀请函
+      // console.log(pyq.body.data.sceneDetail);
+      let pyq1 = pyq.body.data.sceneDetail;
+      let str3 = ``;
+      pyq1.forEach((item, i) => {
+        str3 += ` <div class="container1">
+                                <div class="tit-con">
+                                  <h2>${item.name}</h2>
+                                  <a href="./scene.html?${item.kindId}">进入场景</a>
+                                </div>
+                              <div class="temp-con">
+                              `;
+        item.templates.forEach((img, i) => {
+          str3 += `
+                        <div class="temp-item ${item == pyq1[1] ? "hbhb" : ""}">
+                          <img src="http:${img.designTemplateImageUrl}" title='${img.designTemplateId}' />
+                        </div>
+                        `;
+        });
+        str3 += `
+                        </div>
+                      <div class="gh">
+                        <div><a href="./scene.html?${item.kindId}">更多</a></div>
+                        <div class='hhh' id='${item.kindId}'>换一批</div>
+                      </div>
+                      </div>
+                    `;
+      });
+      $(".container1111").html(str3);
+
+      //点击下一页
+      let num2 = 1;
+      $(".hhh").click((e) => {
+        num2 += 1;
+        let id = $(e.target).attr("id");
+        // 调用接口渲染
+        fn(e.target, id, num2, 20);
+      });
+
+      //  印刷宣传海报、名片、竖版海报
+      let yinhua1 = yinhua.body.data.sceneDetail;
+      let str4 = ``;
+      yinhua1.forEach((item, i) => {
+        str4 += ` <div class="container1">
+                                <div class="tit-con">
+                                  <h2>${item.name}</h2>
+                                  <a href="./scene.html?${item.kindId}">进入场景</a>
+                                </div>
+                              <div class="temp-con ccc">
+                              `;
+        item.templates.forEach((img, i) => {
+          str4 += `
+                        <div class="temp-item ${item == yinhua1[1] ? "hbhb" : ""}">
+                          <img src="http:${img.designTemplateImageUrl}" title='${img.designTemplateId}' />
+                        </div>
+                        `;
+        });
+        str4 += `
+                        </div>
+                      <div class="gh">
+                        <div><a href="./scene.html?${item.kindId}">更多</a></div>
+                        <div class='hh' id='${item.kindId}'>换一批</div>
+                      </div>
+                      </div>
+                    `;
+      });
+      $(".container11111").html(str4);
+
+      //点击下一页
+      let num1 = 1;
+      $(".hh").click((e) => {
+        num1 += 1;
+        let id = $(e.target).attr("id");
+        // 调用接口渲染
+        fn(e.target, id, num1, 12);
+      });
+
+      //  直播悬浮标
+      let zhibo1 = zhibo.body.data.sceneDetail;
+      // console.log(zhibo1);
+      let str5 = ``;
+      zhibo1.forEach((item, i) => {
+        str5 += ` <div class="container1">
+                                <div class="tit-con">
+                                  <h2>${item.name}</h2>
+                                  <a href="./scene.html?${item.kindId}">进入场景</a>
+                                </div>
+                              <div class="temp-con cc">
+                              `;
+        item.templates.forEach((img) => {
+          str5 += `
+                        <div class="temp-item">
+                          <img src="http:${img.designTemplateImageUrl}" title='${img.designTemplateId}' />
+                        </div>
+                        `;
+        });
+        str5 += `
+                        </div>
+                      <div class="gh">
+                        <div><a href="./scene.html?${item.kindId}">更多</a></div>
+                        <div class='h' id='${item.kindId}'>换一批</div>
+                      </div>
+                      </div>
+                    `;
+      });
+      $(".container111111").html(str5);
+
+      //点击下一页
+      let num = 1;
+      $(".h").click((e) => {
+        num += 1;
+        let id = $(e.target).attr("id");
+        // 调用接口渲染
+        fn(e.target, id, num);
+      });
+
+      // 跳转详情页
+      let cli = document.querySelectorAll(".temp-con");
+      cli.forEach((item) => {
+        item.onclick = function (e) {
+          // 判断
+          if (e.target.nodeName == "IMG") {
+            let id = $(e.target).attr("title");
+            location.assign(`./details.html?${id}`);
+          }
+        };
+      });
+
+      function fn(e, id, num, kindId = "") {
+        (async () => {
+          let url = `https://pub-cdn-oss.chuangkit.com/cache/today_recommend_template_v2/today_recommend_mobile_v2_${id}_6_${num}?v=1663770722000&client_type=40&_dataClientType=3`;
+          let res = await fetch(url); // 响应体
+          let resulit = await res.json(); // 响应体解析成json数据
+          let a = resulit.body.templates;
+          if (num >= resulit.body.pageTotal) {
+            num = 1;
+          }
+          let str = ``;
+          a.forEach((item, i) => {
+            str += `<div class="temp-item ${resulit.body.kindId == kindId ? "hbhb" : ""} ">
+                      <img src="http:${item.designTemplateImageUrl}" title='${item.designTemplateId}' />
+                    </div>
+                  `;
+          });
+          $(e).parent().prev().html(str);
+        })();
+      }
+    </script>
+  </body>
+</html>
