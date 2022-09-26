@@ -1,0 +1,64 @@
+html {
+    font-size: 13.3333333vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #111;
+}
+body {
+    width: 100%;
+    font-size: 0.16rem;
+}
+.box{
+    width: 90%;
+    margin: 0.3rem auto 0;
+    position: relative;
+}
+.box input{
+    display: block;
+    width: 100%;
+    height: 0.9rem;
+    font-size: 0.3rem;
+    outline: none;
+    border: none;
+    border-bottom: 0.001rem solid lightgray;
+}
+.box .yzm{
+    width: 1.65rem;
+    height: 0.47rem;
+    font-size: 0.22rem;
+    background: #0773fc;
+    border-radius: .64rem;
+    opacity: 0.4;
+    color: white;
+    position: absolute;
+    right: 0.3rem;
+    top: 1.2rem;
+}
+.box .zc{
+    width: 100%;
+    height: 0.73rem;
+    background: #0773fc;
+    border-radius: .64rem;
+    opacity: 0.4;
+    color: white;
+    font-size: 0.27rem;
+    margin-top: 0.3rem;
+}
+.box p{
+    font-size: 0.18rem;
+    color: rgba(0,0,0,.6);
+    text-align: center;
+    margin-top: 0.3rem;
+}
+.box .login{
+    width: 5rem;
+    font-size: 0.22rem;
+    color: rgba(0,0,0,.8);
+    margin: 0.3rem auto 0;
+}

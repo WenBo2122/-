@@ -41,7 +41,6 @@ body {
   height: 54px;
 }
 
-
 .box {
   width: 3.24rem;
   height: 3.23rem;
@@ -70,4 +69,106 @@ body {
   font-size: 0.28rem;
   color: #fff;
   line-height: 0.73rem;
+}
+
+.box1 {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: lightgray;
+  z-index: 100000000;
+  display: none;
+}
+.login {
+  width: 100%;
+  margin-top: 20%;
+  height: 80%;
+  background-color: white;
+  border-radius: 0.2rem;
+}
+.login .zkx {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.login .zkx .title {
+  width: 100%;
+  font-size: 0.3rem;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 0.6rem;
+}
+.login .zkx input {
+  display: block;
+  width: 100%;
+  height: 0.3rem;
+  font-size: 0.25rem;
+  margin-top: 0.2rem;
+  outline: none;
+  border: none;
+  border-bottom: 0.001rem solid lightgray;
+}
+.login .zkx .yzm {
+  position: absolute;
+  right: 0.3rem;
+  top: 1.5rem;
+  width: 1.5rem;
+  height: 0.3rem;
+  background: #f7f8f9;
+  text-align: center;
+  line-height: 0.3rem;
+  border-radius: 0.2rem;
+  font-size: 0.16rem;
+}
+
+.login .zkx span {
+  display: inline-block;
+  color: #0773fc;
+  margin-top: 0.1rem;
+}
+.login .zkx span:nth-child(6) {
+  float: right;
+}
+.login .zkx button {
+  display: block;
+  background: #0773fc;
+  width: 80%;
+  height: 0.5rem;
+  margin: 0.4rem auto 0;
+  border-radius: 0.3rem;
+}
+.login .zkx p {
+  color: lightgray;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+.login .zkx p a {
+  color: #0773fc;
+}
+.login .zkx .text {
+  color: #111;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.login .zkx .img {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0.2rem auto 0;
+}
+.login .zkx .img img {
+  width: 100%;
+  height: 100%;
+}
+.login .zkx .close {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 0.5rem;
+  position: absolute;
+  top: -0.7rem;
+  right: -0.5rem;
 }

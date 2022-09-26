@@ -49,8 +49,10 @@ body {
 
 .remen {
   width: 100%;
-  margin: 0.38rem 0.25rem;
   font-size: 0.23rem;
+}
+.qqq {
+  margin: 0.38rem 0.25rem;
 }
 
 .tit {
@@ -58,7 +60,7 @@ body {
   margin-top: 0.3rem;
 }
 
-.tit a {
+.tit span {
   display: inline-block;
   width: 0.85rem;
   height: 0.51rem;
@@ -70,4 +72,71 @@ body {
   line-height: 0.51rem;
   border-radius: 0.3rem;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.search-list {
+  width: 100%;
+  height: 0.7.2rem;
+  margin-top: 0.1rem;
+  padding: 0 0.24rem;
+  font-size: 0.25rem;
+  border-bottom: 0.01rem solid #ccc;
+  line-height: 0.5rem;
+}
+
+.swiper-slide {
+  width: auto !important;
+  padding: 0 0.1rem;
+}
+.title {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.zhankai {
+  position: absolute;
+  top: 0.02rem;
+  right: 0.2rem;
+}
+
+.zhankai img {
+  width: 0.4rem;
+  height: 0.4rem;
+  transition: all 0.2s;
+}
+.moban {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 0.98rem;
+  padding: 0 0.24rem;
+}
+
+.moban-tit,
+.zz {
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+
+.ccc {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 0.24rem;
+}
+
+.img {
+  width: 3.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.img img {
+  width: 100%;
+}
+
+.hide {
+  display: none;
 }
