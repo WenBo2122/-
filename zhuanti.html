@@ -45,14 +45,38 @@
                   </div>`;
         });
         str += `</div>
-                  <div class='gengduo'>查看更多</div>
+                  <div class='gengduo' id='${item.id}'>查看更多</div>
                 </div>`;
       });
       $(".zhuanti").html(str);
 
+      // 加载更多
+      let num = [];
+      document.querySelectorAll(".gengduo").forEach((item, i) => {
+        let id1 = item.id;
+        num[i] = 1;
+        item.onclick = function () {
+          num[i]++;
+          (async () => {
+            let url = `http://localhost:9527/solutionSubject/themeExtend/template.do?_dataType=json&_dataClientType=3&client_type=40&themeExtendId=${id1}&pageSize=6&pageNum=${num[i]}`;
+            let res = await fetch(url); // 响应体
+            let resulit = await res.json(); // 响应体解析成json数据
+            let a = resulit.body.data.templates;
+            console.log(resulit);
+            let str = ``;
+            a.forEach((img) => {
+              let div = document.createElement("div");
+              div.classList.add("img");
+              div.innerHTML = `<img src="${img.designTemplateImageUrl}" id='${img.designTemplateId}' />`;
+              item.previousElementSibling.append(div);
+            });
+          })();
+        };
+      });
+
       // 跳转详情页
       $(".img img").click((e) => {
-        console.log($(e.target).attr("id"));
+        // console.log($(e.target).attr("id"));
         let id = $(e.target).attr("id");
         location.assign(`./details.html?${id}`);
       });

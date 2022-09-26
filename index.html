@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_3245172_nkvxkjxk04i.css" />
     <link rel="stylesheet" href="./CSS/reset.css" />
     <link rel="stylesheet" href="./CSS/index.css" />
-    <link rel="stylesheet" href="../ui/Swiper/swiper-bundle.min.css" />
-    <script src="../ui/Swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="./ui/Swiper/swiper-bundle.min.css" />
+    <script src="./ui/Swiper/swiper-bundle.min.js"></script>
     <title>创客贴</title>
   </head>
   <body>
@@ -64,6 +64,11 @@
       <!-- 渲染 -->
     </div>
 
+    <!-- 遮罩 -->
+    <div class="bg">
+      <div class="amplification"></div>
+    </div>
+
     <!-- 底部 table 栏 -->
     <div class="mytable">
       <div class="tit">
@@ -88,7 +93,7 @@
 
     <div class="kong"></div>
 
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./ui/jquery-3.6.1.min.js"></script>
     <script type="module">
       import { test, shouji, zhuanti, pyq, yinhua, zhibo } from "./api/home.js";
 
@@ -133,8 +138,8 @@
       let str1 = ``;
       zhuanti1.forEach((item) => {
         str1 += ` <div class="swiper-slide" '>
-                              <div class='ti' id='${item.id}'>
-                                  <h2>${item.title}</h2>
+                              <div class='ti' >
+                                  <h2 id='${item.id}'>${item.title}</h2>
                                   <p>${item.themeDescribe}</p>
                                 <div class="yuan"></div>
                               </div>
@@ -143,9 +148,8 @@
       $(".swiper-wrapper").html(str1);
 
       // 点击跳转推荐专题页面
-      $(".ti").click((e) => {
+      $(".ti h2").click((e) => {
         let id = $(e.target).attr("id");
-        console.log(id);
         location.assign(`./zhuanti.html?${id}`);
       });
 
@@ -315,6 +319,34 @@
             location.assign(`./details.html?${id}`);
           }
         };
+      });
+
+      // 遮罩层
+      let startTime = 0;
+      let timeS = 0;
+
+      cli.forEach((item) => {
+        item.ontouchstart = function (e) {
+          if (e.target.nodeName == "IMG") {
+            startTime = Date.now();
+          }
+        };
+        item.ontouchend = function (e) {
+          if (e.target.nodeName == "IMG") {
+            let src = e.target.src;
+            let title = e.target.src;
+            timeS = Date.now() - startTime;
+            if (timeS > 300) {
+              document.querySelector(".amplification").style.display = "block";
+              document.querySelector(".amplification").innerHTML = `<img src="${src}"title="${title}" alt="">`;
+              document.querySelector(".bg").style.display = "block";
+            }
+          }
+        };
+      });
+
+      $(".bg").click(function (e) {
+        $(".bg").css("display", "none");
       });
 
       function fn(e, id, num, kindId = "") {

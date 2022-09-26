@@ -6,31 +6,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./CSS/reset.css" />
     <link rel="stylesheet" href="./CSS/search.css" />
+    <link rel="stylesheet" href="./ui/Swiper/swiper-bundle.min.css" />
     <title>search</title>
   </head>
   <body>
-    <div class="sousuo-top">
-      <div class="sousuo-img"><img src="./image/搜索.png" alt="" /></div>
-      <input type="text" name="" id="" placeholder="200000+ 免费模板任你搜索" />
-      <button class="cancel">取消</button>
+    <div class="box">
+      <div class="sousuo-top">
+        <div class="sousuo-img"><img src="./image/搜索.png" alt="" /></div>
+        <input type="text" name="" id="" placeholder="200000+ 免费模板任你搜索" />
+        <button class="cancel">取消</button>
+      </div>
     </div>
 
     <div class="remen">
-      <h2>热门搜索</h2>
-      <div class="tit"></div>
+      <div class="qqq">
+        <h2>热门搜索</h2>
+        <div class="tit"></div>
+      </div>
+
+      <div class="hide">
+        <div class="search-list">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <!-- 渲染 -->
+              <div class="swiper-slide">
+                <span class="title">全部</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">儿童手抄报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">电商竖版海报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">优惠券</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">饿了么海报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">竖屏海报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">书籍封面</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">线稿手抄报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">电商横版海报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">饿了么商品主图</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">竖版直播背景</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">2寸证件照</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">竖版商品主图</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">弹窗广告</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">1寸证件照</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">胶囊banner</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">Pad壁纸</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">美团店招</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">直播悬浮标</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">定制T恤</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">商品主图</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">美团海报</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">横版售后卡</span>
+              </div>
+              <div class="swiper-slide">
+                <span class="title">商品详情页</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="moban">
+          <div class="moban-tit"></div>
+          <div class="zz"><span>最热</span> | <span>最新</span></div>
+        </div>
+
+        <div class="ccc"></div>
+      </div>
     </div>
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="./ui/Swiper/swiper-bundle.min.js"></script>
+    <script src="./ui/jquery-3.6.1.min.js"></script>
     <script type="module">
       import { remen } from "./api/cearchAPI.js";
+      // console.log(remen);
 
-      // console.log(remen.body.data);
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 5.2,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
       let str = ``;
       let remen1 = remen.body.data;
       remen1.forEach((item) => {
-        str += `<a href="">${item.keyword}</a>`;
+        str += `<span>${item.keyword}</span>`;
       });
       $(".tit").html(str);
 
+      let title = ``;
+      // 推荐跳转
+      document.querySelectorAll(".tit span").forEach((item, i) => {
+        // console.log(item);
+
+        item.onclick = () => {
+          title = item.innerHTML;
+          console.log(title);
+
+          // 隐藏显示
+          document.querySelector(".qqq").style.display = "none";
+          document.querySelector(".hide").style.display = "block";
+          (async () => {
+            let url = "http://localhost:9527//template/wxSmallAppSearch.do?_dataType=json"; //被代理的接口，用于解决跨域
+            let res = await fetch(url, {
+              method: "POST",
+              headers: {
+                "content-type": "application/x-www-form-urlencoded",
+              },
+              body: `pageNo=1&pagesize=20&time_order=0&kw=${title}`, //数据以键值&键值拼接
+            }); //响应体
+            let result = await res.json();
+            // 数据
+            let data = result.body.templates;
+            // 图片
+            let str = ``;
+            data.forEach((item) => {
+              str += `<div class="img"><img src="${item.designTemplateThumbUrls}" alt="" /></div>`;
+            });
+            document.querySelector(".ccc").innerHTML = str;
+
+            // 模板数量
+            let str1 = `${remen1[i].templateCount}个模板`;
+            document.querySelector(".moban-tit").innerHTML = str1;
+          })();
+        };
+      });
+
+      // 最新最热
+      document.querySelectorAll(".zz span").forEach((item, i) => {
+        item.onclick = () => {
+          // console.log(item, i);
+          (async () => {
+            let url = "http://localhost:9527//template/wxSmallAppSearch.do?_dataType=json"; //被代理的接口，用于解决跨域
+            let res = await fetch(url, {
+              method: "POST",
+              headers: {
+                "content-type": "application/x-www-form-urlencoded",
+              },
+              body: `pageNo=1&pagesize=20&time_order=${i}&kw=${title}`, //数据以键值&键值拼接
+            }); //响应体
+            let result = await res.json();
+            str = ``;
+            result.body.templates.forEach((item) => {
+              str += `<div class="img"><img src="${item.designTemplateThumbUrls[0]}" alt="" /></div>`;
+            });
+            document.querySelector(".ccc").innerHTML = str;
+          })();
+        };
+      });
+
+      // 后退
       $(".cancel").click(function () {
         history.back();
       });

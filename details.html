@@ -18,10 +18,9 @@
       <h1>为你推荐</h1>
 
       <div class="tuijian"></div>
-      
+
       <div class="kongbai"></div>
     </div>
-
 
     <div class="bottom">
       <div class="ii"><img src="./image/收藏1.png" alt="" /></div>
@@ -33,7 +32,6 @@
       let id = location.search.slice(1);
       (async () => {
         let url;
-        url = "https://api.chuangkit.com/designtemplate/getDetailCacheFileUrl.do?_dataType=json&_dataClientType=3";
         url = "http://localhost:9527/api/designtemplate/getDetailCacheFileUrl.do?_dataType=json&_dataClientType=3";
         let res = await fetch(url, {
           method: "POST",

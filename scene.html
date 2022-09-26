@@ -58,6 +58,11 @@
       let id = location.search.substring(1);
       console.log(id);
 
+      // 搜索跳转
+      $(".search").click(function () {
+        $(location).attr("href", "./search.html");
+      });
+
       (async () => {
         let url;
         url = `http://localhost:9527/api/home/getDesignType.do?_dataType=json&_dataClientType=3&client_type=40&second_kind_id=${id}`;
@@ -87,13 +92,24 @@
         document.querySelectorAll(".tit").forEach((item) => {
           item.onclick = function () {
             let tagid = this.id;
-            console.log(tagid);
 
             (async () => {
-              let url = `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_0_${tagid}_0_0?v=1663330732302&client_type=40&_dataClientType=3`;
+              // let url = ``;
+              // if (id == 34 || id == 4) {
+              //   url = `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_${tagid}_0_0_0?v=1663198663951&client_type=40&_dataClientType=3`;
+              // } else {
+              //   url = `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_0_${tagid}_0_0?v=1663330732302&client_type=40&_dataClientType=3`;
+              // }
+
+              let url =
+                id == 34 || id == 4
+                  ? `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_${tagid}_0_0_0?v=1663198663951&client_type=40&_dataClientType=3`
+                  : `http://pub-cdn-oss.chuangkit.com/cache/wx_app_template_cache_v2/1_1_50_${id}_0_0_${tagid}_0_0?v=1663330732302&client_type=40&_dataClientType=3`;
+
               let res = await fetch(url);
               let result = await res.json();
               let img = result.body.templates;
+
               let str = ``;
               img.forEach((item) => {
                 str += `<div><img src="${item.designTemplateThumbUrls[0]}" title='${item.designTemplateId}'/></div>`;
@@ -116,18 +132,19 @@
       fn();
       function fn(index) {
         (async () => {
-          let url;
-          url = `http://localhost:9527/api/designtemplate/getWxAppTemplateByKindId.do?_dataType=json&page_no=1&sid=${id}&is_new=1&price_type=0&sort_type=${index}&name=全部`;
+          let url = `http://localhost:9527/api/designtemplate/getWxAppTemplateByKindId.do?_dataType=json&page_no=1&sid=${id}&is_new=1&price_type=0&sort_type=${index}&name=全部`;
+          console.log();
           let res = await fetch(url);
           let result = await res.json();
           // 二级场景
           let a = result.body.cacheUrl;
+          // console.log(a);
           let url1 = `http:${a}`;
           let res1 = await fetch(url1);
           let result1 = await res1.json();
 
           let aa = result1.body.templates;
-          console.log(aa);
+          // console.log(result1);
 
           // 渲染图片
           let img = ``;
